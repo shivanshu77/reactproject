@@ -353,8 +353,8 @@ export const activities = [
   },
 ];
 
-export const statistics = [
-];
+//export const statistics = [
+//];
 export const PersonalInfo = [
   {
     id: 1,
