@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { activities, statistics } from "../../data";
+import { activities} from "../../data";
 import { getUserById } from "../../utils/fetch";
 import "./user.scss";
 import { useParams } from "react-router-dom";
@@ -34,6 +34,13 @@ interface Chart {
   data: { name: string; visits: number; clicks: number }[];
 }
 
+/*interface Statistic {
+  userId: number;
+  dataKeys: { name: string; color: string }[];
+  data: { name: string; visits: number; clicks: number }[];
+}
+*/
+
 interface User {
   id: number;
   info: Info;
@@ -53,17 +60,18 @@ const User = () => {
 
   const { id, ...info } = u;
 
-  const userStatistics = statistics.find((stat) => stat.userId === id);
+ /*const userStatistics = statistics.find((stat) => stat.userId === id);*/
   const userActivities = activities
-    .filter((activity) => activity.userId === id)
+   .filter((activity) => activity.userId === id)
     .map(({ userId, ...rest }) => rest);
 
-  const user: User = {
+   const user: User = {
     id,
     info,
-    chart: userStatistics
+    chart: null,
+   /* chart: userStatistics
       ? { dataKeys: userStatistics.dataKeys, data: userStatistics.data }
-      : null,
+      : null,*/
     activities: userActivities.length > 0 ? userActivities : null,
   };
 
